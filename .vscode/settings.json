@@ -8,11 +8,16 @@
   },
   "headwind.runOnSave": false,
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "eslint.validate": ["javascript", "javascriptreact", "typescript"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript"
+  ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "commentTranslate.source": "Bing",
   "cSpell.words": [
     "contentlayer",
     "lemonsqueezy"
-  ]
+  ],
+  "gitConfigUser.selectedProfile": "Work"
 }

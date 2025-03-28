@@ -12,7 +12,9 @@ services:
     environment:
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=mypassword
-
+      - PGDATA=/var/lib/postgresql/data/some_name/
+    privileged: true
+    
   adminer:
     image: adminer
     restart: always

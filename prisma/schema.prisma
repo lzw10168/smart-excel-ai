@@ -4,6 +4,7 @@
 // generator：指定哪个客户端向数据发送查询语言
 generator client {
   provider = "prisma-client-js"
+    output   = "../node_modules/.prisma/client"
 }
 
 // datasource：定义数据库类型和链接地址
