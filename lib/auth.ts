@@ -1,20 +1,24 @@
+ 
 import { ONE_DAY } from "@/lib/constants";
 import { getUserSubscriptionStatus } from "@/lib/lemonsqueezy/subscriptionFromStorage";
 import prisma from "@/lib/prisma";
 import { UserInfo } from "@/types/user";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import bcrypt from "bcryptjs";
 import { Account, NextAuthOptions, TokenSet } from "next-auth";
 import { JWT } from "next-auth/jwt";
-import GithubProvider from 'next-auth/providers/github';
-import GoogleProvider from 'next-auth/providers/google';
+import Credentials from "next-auth/providers/credentials";
+import EmailProvider from "next-auth/providers/email";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import redis from "./redis";
-
 // Here you define the type for the token object that includes accessToken.
 interface ExtendedToken extends TokenSet {
   accessToken?: string;
   userId?: string;
 }
-
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
@@ -35,6 +39,57 @@ export const authOptions: NextAuthOptions = {
       clientId: `${process.env.GOOGLE_ID}`,
       clientSecret: `${process.env.GOOGLE_SECRET}`
     }),
+        EmailProvider({
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: process.env.EMAIL_SERVER_PORT,
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
+      },
+      from: process.env.EMAIL_FROM,
+    }),
+    Credentials({
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Invalid credentials")
+        }
+
+        console.log('prisma.user: ', prisma.user);
+        const user = await prisma.user.findUnique({
+          where: {
+            email: credentials.email
+          }
+        })
+
+        if (!user || !user.password) {
+          throw new Error("Invalid credentials")
+        }
+
+        const isCorrectPassword = await bcrypt.compare(
+          credentials.password,
+          user.password
+        )
+
+        if (!isCorrectPassword) {
+          throw new Error("Invalid credentials")
+        }
+
+        return {
+          id: user.userId,
+          email: user.email,
+          username: user.username,
+          avatar: user.avatar,
+          role: user.role,
+        }
+      }
+    })
   ],
   callbacks: {
     async jwt({ token, account }) {

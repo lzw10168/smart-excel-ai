@@ -3,6 +3,7 @@ import UserAccountHeader from "@/components/UserAccountHeader";
 import { UserInfo } from "@/types/user";
 
 export default function Header({ user }: { user?: UserInfo }) {
+  console.log('user: ', user);
   return (
     <div
       className="fixed z-10 h-14 w-full border-b bg-white bg-opacity-60 first-letter:shadow-sm"

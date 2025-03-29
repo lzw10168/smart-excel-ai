@@ -18,7 +18,6 @@
 > 
 > 302.AI开源工具啦：https://github.com/302ai
 
-# [SmartExcel.cc](https://www.smartExcel.cc/)
 
 用AI在几秒钟内生成你想要的Excel公式。
 
@@ -63,29 +62,3 @@ pnpm run dev
 
 [![使用Vercel部署](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/weijunext/smart-excel-ai&project-name=&repository-name=smart-excel-ai&demo-title=SmartExcel&demo-description=Generate%20the%20Excel%20formulas%20you%20need%20in%20seconds%20using%20AI.&demo-url=https://smartexcel.cc&demo-image=https://smartexcel.cc/opengraph-image.png)
 
-## 关于我
-
-**Full-Stack Engineer, Open-Source Next.js Artist & AI Enthusiast.**
-
-**全栈工程师，Next.js 开源手艺人，AI降临派。**
-
-[博客](https://weijunext.com)  
-[Github](https://github.com/weijunext)  
-[Twitter/X](https://x.com/weijunext)  
-[Medium](https://medium.com/@weijunext)  
-[掘金](https://juejin.cn/user/26044008768029)  
-[知乎](https://www.zhihu.com/people/mo-mo-mo-89-12-11)  
-[微信交流群](https://weijunext.com/make-a-friend)  
-
-如果这个项目对您有帮助，请给仓库点个star，能赞助一下就更好了👇
-
-<a href="https://www.buymeacoffee.com/weijunextz" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="请我喝咖啡" style="height: 41px !important;width: 174px !important;" ></a>
-
-
-<a href="https://afdian.net/a/weijunext" target="_blank"><img src="./public/afd.png" alt="在爱发电支持我" style="height: 50px !important"></a>
-
-<img src="./public/zs.jpeg" alt="赞赏作者" style="height: 200px; width: 200px">
-
-## Star 记录
-
-![Star History Chart](https://api.star-history.com/svg?repos=weijunext/smart-excel-ai&type=Date)

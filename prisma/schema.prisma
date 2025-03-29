@@ -33,12 +33,14 @@ model User {
   avatar           String?
   role             Int?
   platform         String? // github google
-  email            String?
+  email            String? @unique
   // lemonsqueezy
   subscriptionId   String?
   customerId       String?
   variantId        Int?
   currentPeriodEnd Int?
+  password         String?
+  emailVerified    DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
